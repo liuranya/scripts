@@ -3,22 +3,10 @@
 京喜财富岛互助互助
 更新时间：2021-9-11
 活动入口：京喜APP-我的-京喜财富岛互助
-已支持IOS双京东账号,Node.js支持N个京东账号
-脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
-============Quantumultx===============
-[task_local]
-#京喜财富岛互助
-33 0,14 * * * https://raw.githubusercontent.com/KingRan/KR/main/jd_cfd_help.js, tag=京喜财富岛互助, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jxcfd.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "33 0,14 * * *" script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_cfd_help.js,tag=京喜财富岛互助
-
-===============Surge=================
-京喜财富岛互助 = type=cron,cronexp="33 0,14 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_cfd_help.js
-
-============小火箭=========
-京喜财富岛互助 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_cfd_help.js, cronexpr="33 0,14 * * *", timeout=3600, enable=true
+cron "33 5 * * *" script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_cfd_help.js,tag=京喜财富岛互助
   
 */
 !function (t, r) { "object" == typeof exports ? module.exports = exports = r() : "function" == typeof define && define.amd ? define([], r) : t.CryptoJS = r() }(this, function () {

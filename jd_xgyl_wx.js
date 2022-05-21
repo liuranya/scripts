@@ -4,22 +4,9 @@
 活动入口：微信小程序-京小哥助手
 活动时间：2021年4月16日～2021年5月17日
 
-已支持IOS双京东账号, Node.js支持N个京东账号
-脚本兼容: QuantumultX, Surge, Loon, 小火箭，JSBox, Node.js
-============Quantumultx===============
-[task_local]
-#小鸽有礼
-3 0,7 * * * jd_xgyl_wx.js, tag=小鸽有礼,  enabled=true
-
-================Loon==============
 [Script]
-cron "3 0,7 * * *" script-path=jd_xgyl_wx.js, tag=小鸽有礼
+cron "3 2,5 * * *" script-path=jd_xgyl_wx.js, tag=小鸽有礼
 
-===============Surge=================
-小鸽有礼 = type=cron,cronexp="3 0,7 * * *",wake-system=1,timeout=3600,script-path=jd_xgyl_wx.js
-
-============小火箭=========
-小鸽有礼 = type=cron,script-path=jd_xgyl_wx.js, cronexpr="3 0,7 * * *", timeout=3600, enable=true
  */
 const $ = new Env('小鸽有礼');
 const notify = $.isNode() ? require('./sendNotify') : '';
