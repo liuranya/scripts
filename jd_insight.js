@@ -80,7 +80,7 @@ async function main() {
 				}
 			}
 			$.log(msg)
-			await notify.sendNotify(`${$.nickName || $.UserName} 京东问卷调查得京豆`, msg);
+			await notify.sendNotify(`账号 ${$.index} ${$.UserName} 京东问卷调查得京豆`, msg);
 		} else {
 			$.log('当前账户没有京调研问卷')
 		}
