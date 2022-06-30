@@ -3,6 +3,7 @@
  * @LastEditors: X1a0He
  * @Description: 批量取关京东店铺和商品
  * @Fixed: 不再支持Qx，仅支持Node.js
+ * cron: 25 5,23 * * *
  */
 const $ = new Env('批量取关店铺和商品');
 //Node.js用户请在jdCookie.js处填写京东ck;
