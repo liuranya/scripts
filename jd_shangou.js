@@ -1,19 +1,14 @@
+
 /*
-空气、6豆、10豆、20豆
-cron:1 10 * * *
-============Quantumultx===============
-[task_local]
-#魔方红包雨
-1 12 * * * jd_mfredrain.js, tag=魔方红包雨, enabled=true
+10 10 * * * jd_shangou.js
  */
 
-const $ = new Env('魔方红包雨');
+const $ = new Env('闪购签到有礼');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let jdNotify = true;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message = '';
-let encryptProjectId = '3NhNqgKD5WYkmLLsudX1Z2vVS5pP';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -44,7 +39,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
         }
         continue
       }
-      await dotask();
+      await shangou();
 	  await $.wait(1000)
     }
   }
@@ -58,17 +53,18 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
 
 
 
-async function dotask() {
+async function shangou() {
   return new Promise(async (resolve) => {
     $.get(taskUrl(), async (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
-          console.log(`doInteractiveAssignment API请求失败，请检查网路重试`)
+          console.log(`API请求失败，请检查网路重试`)
         } else {
              data = JSON.parse(data)
              if (data.subCode == 0){
-               console.log(data.rewardsInfo?.successRewards[3][0]?.rewardName||'空气')
+               console.log(data.msg)
+               console.log(data.rewardsInfo?.successRewards[3][0]?.quantity+'豆'||'空气')
             }else{
               console.log(data.msg)
             }
@@ -84,7 +80,7 @@ async function dotask() {
 
 function taskUrl() {
   return {
-    url: `https://api.m.jd.com/client.action?client=wh5&clientVersion=1.0.0&appid=redrain-2021&functionId=doInteractiveAssignment&body=%7B%22completionFlag%22:true,%22sourceCode%22:%22acehby20210924%22,%22encryptProjectId%22:%22uyuXxVVy8C3AarwZ2VAHecYNat6%22,%22encryptAssignmentId%22:%2246xcZZ1QaAG7ykQzpDNtSwarHxSk%22%7D`,
+    url: `https://api.m.jd.com/client.action?client=wh5&clientVersion=1.0.0&osVersion=15.1.1&networkType=wifi&functionId=doInteractiveAssignment&t=1640952130681&body={"itemId":"1","completionFlag":true,"encryptAssignmentId":"2mbhaGkggQQGGM3imR2o3BMqAbFH","encryptProjectId":"5wAnzYsAWyq94z4TQ6N2tjVKmeB","sourceCode":"aceshangou0608","lat":"0.000000","lng":"0.000000"}`,
     headers: {
       'Host': 'api.m.jd.com',
       'accept':'application/json, text/plain, */*',
