@@ -1,7 +1,8 @@
-/**
-cron=20 1,6 * * *
-new Env('闪购盲盒');
- */
+/*
+[Script]
+cron "20 1,6 * * *" tag=闪购盲盒
+*/
+
 const $ = new Env('闪购盲盒');
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
