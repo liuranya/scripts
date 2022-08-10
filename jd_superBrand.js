@@ -1,6 +1,6 @@
 /**
  特务Z
- 不是日常活动，不要设置定时
+ 25,47 23 * * *
  */
  const $ = new Env('特务Z');
  const notify = $.isNode() ? require('./sendNotify') : '';
