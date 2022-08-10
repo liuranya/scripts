@@ -1,6 +1,6 @@
 /**
 汪汪赛跑-提现10元
-2 0 0 * * 5 jd_joy_run_reward.ts
+0 0 0 * * 5 jd_joy_run_reward.ts
 new Env('汪汪赛跑提现')
 Modify By Dylan from HW
 updateTime：2022-07-09
