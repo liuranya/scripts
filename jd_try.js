@@ -25,7 +25,7 @@ export JD_TRY_SENDNUM="10" #每隔多少账号发送一次通知，默认为4
 export JD_TRY_UNIFIED="false" 默认采用不同试用组
 
 [Script]
-cron "cron=44 16 * * *" tag=京东试用
+cron "cron=44 16 * * *"
 
  */
 if (!process.env.APITOKEN){
