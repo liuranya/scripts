@@ -7,6 +7,9 @@
  * 上一作者说了每天最多300个商店，总上限为500个，jd_unsubscribe.js我已更新为批量取关版
  * 请提前取关至少250个商店确保京东试用脚本正常运行
  * @Address: https://github.com/X1a0He/jd_scripts_fixed/blob/main/jd_try_xh.js
+ * 
+ * cron:13 13 * * *
+ * new Env('京东试用');
 
 如需运行请自行添加环境变量：JD_TRY="true" 即可运行
 脚本是否耗时只看args_xh.maxLength的大小（申请数量），默认50个，申请100个差不多15分钟
@@ -23,9 +26,6 @@ export JD_TRY_APPLYNUMFILTER="10000" #过滤大于设定值的已申请人数
 export JD_TRY_MINSUPPLYNUM="1" #最小提供数量
 export JD_TRY_SENDNUM="10" #每隔多少账号发送一次通知，默认为4
 export JD_TRY_UNIFIED="false" 默认采用不同试用组
-
-[Script]
-cron "cron=44 16 * * *"
 
  */
 if (!process.env.APITOKEN){
