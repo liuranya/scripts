@@ -21,10 +21,9 @@ from functools import partial
 print = partial(print, flush=True)
 
 activatyname = '邀请赢大礼'
-activityId = os.environ["yhyactivityId"]   # 活动类型
 authorCode = os.environ["yhyauthorCode"] # 活动id
 invitePin = os.environ["yhypin"] # pin 填写cookie后面的pin
-activityUrl = f'https://prodev.m.jd.com/mall/active/{activityId}/index.html?code={authorCode}&invitePin={invitePin}'
+activityUrl = f'https://prodev.m.jd.com/mall/active/dVF7gQUVKyUcuSsVhuya5d2XD4F/index.html?code={authorCode}&invitePin={invitePin}'
 
 # 随机ua
 def randomuserAgent():
