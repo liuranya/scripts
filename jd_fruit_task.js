@@ -43,7 +43,7 @@ let message = '',
     subTitle = '',
     option = {},
     isFruitFinished = false;
-const retainWater = $.isNode() ? (process.env.retainWater ? process.env.retainWater : 10000) : ($.getdata('retainWater') ? $.getdata('retainWater') : 100); //保留水滴大于多少g,默认100g;
+const retainWater = $.isNode() ? (process.env.retainWater ? process.env.retainWater : 100) : ($.getdata('retainWater') ? $.getdata('retainWater') : 100); //保留水滴大于多少g,默认100g;
 let jdNotify = true; //是否关闭通知，false打开通知推送，true关闭通知推送
 let jdFruitBeanCard = false; //农场使用水滴换豆卡(如果出现限时活动时100g水换20豆,此时比浇水划算,推荐换豆),true表示换豆(不浇水),false表示不换豆(继续浇水),脚本默认是浇水
 let randomCount = $.isNode() ? 20 : 5;
@@ -139,7 +139,7 @@ async function jdFruit() {
             } else {
                 console.log('不执行再次浇水，攒水滴')
             }
-            await predictionFruit(); //预测水果成熟时间
+            //await predictionFruit(); //预测水果成熟时间
         } else {
             console.log(`初始化农场数据异常, 请登录京东 app查看农场0元水果功能是否正常。`);
             if ($.retry < 2) {
