@@ -429,7 +429,7 @@ async function getExtraAward() {
                   }
                   let date = new Date(item.time);
                   let time = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getMinutes();
-                  console.log(`\n京东昵称【${item.nickName || "匿名用户"}】 在 ${time} 给您助过力\n`);
+                  //console.log(`\n京东昵称【${item.nickName || "匿名用户"}】 在 ${time} 给您助过力\n`);
               })
               message += `【助力您的好友】${str}\n`;
           }
