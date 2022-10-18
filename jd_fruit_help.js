@@ -356,7 +356,87 @@ async function masterHelpShare() {
     }
     //message += `【今日剩余助力👬】${remainTimes}次\n`;
     console.log('助力好友结束，即将开始领取额外水滴奖励\n');
+    await getExtraAward(); //领取额外水滴奖励
 }
+
+//领取额外奖励水滴
+async function getExtraAward() {
+    await farmAssistInit();
+    if ($.farmAssistResult.code === "0") {
+      if ($.farmAssistResult.assistFriendList && $.farmAssistResult.assistFriendList.length >= 2) {
+        if ($.farmAssistResult.status === 2) {
+          let num = 0;
+          for (let key of Object.keys($.farmAssistResult.assistStageList)) {
+            let vo = $.farmAssistResult.assistStageList[key]
+            if (vo.stageStaus === 2) {
+              await receiveStageEnergy()
+              if ($.receiveStageEnergy.code === "0") {
+                console.log(`已成功领取第${key + 1}阶段好友助力奖励：【${$.receiveStageEnergy.amount}】g水`)
+                num += $.receiveStageEnergy.amount
+              }
+            }
+          }
+          message += `【额外奖励】${num}g水领取成功\n`;
+        } else if ($.farmAssistResult.status === 3) {
+          console.log("已经领取过8好友助力额外奖励");
+          message += `【额外奖励】已被领取过\n`;
+        }
+      } else {
+        console.log("助力好友未达到2个");
+        message += `【额外奖励】领取失败,原因：给您助力的人未达2个\n`;
+      }
+      if ($.farmAssistResult.assistFriendList && $.farmAssistResult.assistFriendList.length > 0) {
+        let str = '';
+        $.farmAssistResult.assistFriendList.map((item, index) => {
+          if (index === ($.farmAssistResult.assistFriendList.length - 1)) {
+            str += item.nickName || "匿名用户";
+          } else {
+            str += (item.nickName || "匿名用户") + ',';
+          }
+          let date = new Date(item.time);
+          let time = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getMinutes();
+          //console.log(`\n京东昵称【${item.nickName || "匿名用户"}】 在 ${time} 给您助过力\n`);
+        })
+        message += `【助力您的好友】${str}\n`;
+      }
+      console.log('领取额外奖励水滴结束\n');
+    } else {
+      await masterHelpTaskInitForFarm();
+      if ($.masterHelpResult.code === '0') {
+        if ($.masterHelpResult.masterHelpPeoples && $.masterHelpResult.masterHelpPeoples.length >= 5) {
+          // 已有五人助力。领取助力后的奖励
+          if (!$.masterHelpResult.masterGotFinal) {
+            await masterGotFinishedTaskForFarm();
+            if ($.masterGotFinished.code === '0') {
+              console.log(`已成功领取好友助力奖励：【${$.masterGotFinished.amount}】g水`);
+              message += `【额外奖励】${$.masterGotFinished.amount}g水领取成功\n`;
+            }
+          } else {
+            console.log("已经领取过5好友助力额外奖励");
+            message += `【额外奖励】已被领取过\n`;
+          }
+        } else {
+          console.log("助力好友未达到5个");
+          message += `【额外奖励】领取失败,原因：给您助力的人未达5个\n`;
+          }
+          if ($.masterHelpResult.masterHelpPeoples && $.masterHelpResult.masterHelpPeoples.length > 0) {
+              let str = '';
+              $.masterHelpResult.masterHelpPeoples.map((item, index) => {
+                  if (index === ($.masterHelpResult.masterHelpPeoples.length - 1)) {
+                      str += item.nickName || "匿名用户";
+                  } else {
+                      str += (item.nickName || "匿名用户") + ',';
+                  }
+                  let date = new Date(item.time);
+                  let time = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getMinutes();
+                  console.log(`\n京东昵称【${item.nickName || "匿名用户"}】 在 ${time} 给您助过力\n`);
+              })
+              message += `【助力您的好友】${str}\n`;
+          }
+          console.log('领取额外奖励水滴结束\n');
+      }
+    }
+  }
 
 async function GetCollect() {
     try {
