@@ -511,6 +511,7 @@ if(DisableIndex!=-1){
 			        getMs(), //京东秒杀			        
 			        cash(), //极速金币
 			        jdJxMCinfo(), //京喜牧场
+                    await $.wait(6000),
 			        bean(), //京豆查询
 			        getJxFactory(), //京喜工厂
 			        getDdFactoryInfo(), // 京东工厂
