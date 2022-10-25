@@ -14,7 +14,8 @@ const JXUserAgent = $.isNode() ? (process.env.JX_USER_AGENT ? process.env.JX_USE
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let NowHour = new Date().getHours();
 
-let checkbeanDetailMode=0;
+//默认开启缓存模式
+let checkbeanDetailMode=1;
 if ($.isNode() && process.env.BEANCHANGE_BEANDETAILMODE){
 	checkbeanDetailMode=process.env.BEANCHANGE_BEANDETAILMODE*1;
 }
@@ -511,7 +512,6 @@ if(DisableIndex!=-1){
 			        getMs(), //京东秒杀			        
 			        cash(), //极速金币
 			        jdJxMCinfo(), //京喜牧场
-                    await $.wait(6000),
 			        bean(), //京豆查询
 			        getJxFactory(), //京喜工厂
 			        getDdFactoryInfo(), // 京东工厂
