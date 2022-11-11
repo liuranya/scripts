@@ -1,11 +1,10 @@
 
 /*
-穿越寻宝组队奖励领取
-10 10 10 10 * jd_cxxb_award.js
-updatetime：2022/10/23
+穿越寻宝瓜分红包
+10 10 10 10 * jd_cx_guafen.js
  */
 
-const $ = new Env('穿行组队奖励领取');
+const $ = new Env('穿行瓜分');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let jdNotify = true;
@@ -40,11 +39,7 @@ if ($.isNode()) {
 				}
 				continue;
 			}
-			await run('promote_pk_getAmountForecast');
-			await $.wait(1000);
-			await run('promote_pk_receiveAward');
-			await $.wait(1000);
-			await run('promote_pk_divideScores');
+			await run();
 			await $.wait(2000)
 		}
 	}
@@ -56,10 +51,10 @@ if ($.isNode()) {
 		$.done();
 	})
 
-function run(fn) {
-	let body = `functionId=${fn}&client=m&clientVersion=-1&appid=signed_wh5&body={}`;
+function run() {
+	let body = `functionId=promote_mainDivideRedPacket&client=m&clientVersion=-1&appid=signed_wh5&body={}`;
 	let opt = {
-		url: `https://api.m.jd.com/client.action?functionId=${fn}`,
+		url: `https://api.m.jd.com/client.action?functionId=promote_mainDivideRedPacket`,
 		body,
 		headers: {
 			'Cookie': cookie,
@@ -80,21 +75,14 @@ function run(fn) {
 				} else {
 					if (safeGet(data)) {
 						data = JSON.parse(data);
-						if (data.code === 0) {
-							if (data.data && data.data.bizCode === 0) {
-								if (fn === 'promote_pk_receiveAward') {
-									console.log('领取组队红包：' + data.data.result.value);
-								} else if (fn === 'promote_pk_divideScores'){
-									console.log('领取组队金币：' + data.data.result.produceScore)
-								}
+						if (data.data.bizCode === 0) {
+								console.log('瓜分红包：' + data.data.result.value);
 							} else {
 								console.log(data.data.bizMsg);
-
 							}
 						} else {
 							console.log(`失败:${JSON.stringify(data)}\n`)
 							resolve()
-						}
 					}
 				}
 			} catch (e) {
