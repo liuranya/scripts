@@ -36,7 +36,7 @@ pin3@&@不清空👉该pin不清空
 */
 let jdSignUrl = 'https://api.nolanstore.top/sign'
 let cleancartRun = 'false'
-let cleancartProducts = ''
+let cleancartProducts = '*@&@'
 const $ = new Env('清空购物车');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
