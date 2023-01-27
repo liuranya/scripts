@@ -8,7 +8,7 @@ c47654fb387a2b2d84ffc19f16b52690  20元
 e55648727819d44b09a414aa99c10b48  0.38元
 559967f159d4fbd39d58bbd690875fc8  0.3元
 */
-let id='559967f159d4fbd39d58bbd690875fc8';//一元
+let id='6e53192e506af5d1fe5718867ee0ba1c';//一元
 const $ = new Env('团圆红包提现');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
