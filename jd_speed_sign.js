@@ -8,7 +8,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
-let maxThread = 2; //并发数
+let maxThread = 1; //并发数
 if ($.isNode() && process.env.JDSPEED_MAXTHREAD){
 	maxThread=process.env.JDSPEED_MAXTHREAD*1;
 }
